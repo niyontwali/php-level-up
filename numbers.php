@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learning PHP</title>
+  <title>PHP Level Up</title>
 </head>
+
 <body>
-  <h1>PHP Level Up</h1>
+  <div>
+    <h1>Learning PHP</h1>
+  </div>
+  <?php
+  $num = 12.4;
+  var_dump((int)($num));
+  ?>
 </body>
+
 </html>
