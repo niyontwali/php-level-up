@@ -251,6 +251,7 @@ if (condition) {
   code to be executed if all conditions are false;
 }
 ```
+
 ```php
 switch (n) {
   case label1:
@@ -269,27 +270,40 @@ switch (n) {
 ```
 
 ### PHP Loops
+
 ##### while loop
+
 Loops through a block of code as long as the specified condition is true.
+
 ```php
-switch (n) {
-  case label1:
-    code to be executed if n=label1;
-    break;
-  case label2:
-    code to be executed if n=label2;
-    break;
-  case label3:
-    code to be executed if n=label3;
-    break;
-    ...
-  default:
-    code to be executed if n is different from all labels;
+while (condition is true) {
+  code to be executed;
 }
 ```
 
-### PHP Break
-The break statement can be used to jump out of a switch statement but as well also jump out of any loop statement. Example
+##### for loop
+
+The _for_ loop is used when you know in advance how may times the script should run
+
+```php
+for (init counter; test counter; increment counter) {
+  code to be executed for each iteration;
+}
+```
+
+##### foreach loop
+
+This is used when you want to loop through a block of code for each element in an array. You do not need to struggle using for loop for this.
+
+```php
+foreach ($array as $value) {
+  code to be executed;
+}
+```
+
+### PHP Break and Coninue in _for_ and _while_ loops
+
+The _break_ statement can be used to jump out of a switch statement but as well also jump out of any loop statement. Example
 
 ```php
 <?php
@@ -302,3 +316,97 @@ for ($x = 0; $x < 10; $x++) {
 ?>
 ```
 
+The _continue_ statement breaks one iteration (in the loop), if a specified condition occurs and continues with the next iteration in the loop.
+example
+
+```php
+<?php
+for ($x = 0; $x < 10; $x++) {
+  if ($x == 4) {
+    continue;
+  }
+  echo "The number is: $x <br>";
+}
+?>
+```
+
+### PHP Functions
+
+PHP has more than 1000 built-in function, however, you can also create your own custom functions. User Defined functions are one of the custom functions we can build ourselves and these are functions that start with keyword _function_. E.g
+
+```php
+function functionName () {
+  code to be executed
+}
+```
+
+**Note**: Function name must start always with a letter or an underscore. Function names are not case-sensitive
+
+##### PHP Default argument value
+
+```php
+<?php declare(strict_types=1); // strict requirement
+function setHeight(int $minheight = 50) {
+  echo "The height is : $minheight <br>";
+}
+
+setHeight(350);
+setHeight(); // will use the default value of 50
+setHeight(135);
+setHeight(80);
+?>
+```
+
+##### PHP as a Loosely Typed Language
+
+PHP automatically associate a data type to variables, depending on its value. From PHP 7, type declarations were added. This gave us option to specify the expected data type when declaring a function and by adding the _strict_ declaration, it will throw a "fatal error" if the data type mismatches. To specify _strict_ we need to set `declare(strict_types=1);` on the very first line of the PHP file. E.g
+
+```php
+<?php declare(strict_types=1); // strict requirement
+
+function addNumbers(int $a, int $b) {
+  return $a + $b;
+}
+echo addNumbers(5, "5 days");
+// since strict is enabled and "5 days" is not an integer, an error will be thrown
+?>
+```
+
+### PHP Functions - Returning values
+```php
+<?php declare(strict_types=1); // strict requirement
+function sum(int $x, int $y) {
+  $z = $x + $y;
+  return $z;
+}
+
+echo "5 + 10 = " . sum(5, 10) . "<br>";
+echo "7 + 13 = " . sum(7, 13) . "<br>";
+echo "2 + 4 = " . sum(2, 4);
+?>
+```
+
+##### PHP Return Type Declarations
+We can also define a type of the returned value, in case it mismatches the defined value it will throw a fatal error. To declare a type for the function return, add a colon and the type right before the opening curly bracket of the function
+```php
+<?php declare(strict_types=1); // strict requirement
+function addNumbers(float $a, float $b) : float {
+  return $a + $b;
+}
+echo addNumbers(1.2, 5.2);
+?>
+```
+
+##### Passing Arguments by Reference
+We can pass reference to arguments in php like the use of an ampersand(&);
+```php
+<?php
+function add_five(&$value) {
+  $value += 5;
+}
+
+$num = 2;
+add_five($num);
+echo $num; // this will increment num by five
+?>
+```
