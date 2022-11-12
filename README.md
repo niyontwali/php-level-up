@@ -288,3 +288,17 @@ switch (n) {
 }
 ```
 
+### PHP Break
+The break statement can be used to jump out of a switch statement but as well also jump out of any loop statement. Example
+
+```php
+<?php
+for ($x = 0; $x < 10; $x++) {
+  if ($x == 4) {
+    break;
+  }
+  echo "The number is: $x <br>";
+}
+?>
+```
+
